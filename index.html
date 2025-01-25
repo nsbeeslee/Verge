@@ -84,14 +84,19 @@
         function validateEmail() {
             const email = document.getElementById('email').value;
             const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
+            
+            // Extract domain from email
             const emailDomain = email.split('@')[1];
             
+            // Check if email domain is in the freeEmailDomains list
             if (freeEmailDomains.includes(emailDomain)) {
                 alert("Free email services (e.g., Gmail, Yahoo, Hotmail) are not allowed. Please use a company email address.");
                 return false; // Prevent form submission
             }
-            return true; // Allow form submission
+
+            return true; // Allow form submission if domain is not from a free email provider
         }
     </script>
 </body>
 </html>
+
