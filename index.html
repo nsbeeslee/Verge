@@ -69,15 +69,29 @@
     <div class="form-container">
         <img src="Verge Nursing.png" alt="Verge Nursing Logo"> <!-- Replace with your logo URL -->
         <h2>Let's Connect</h2>
-        <form action="https://script.google.com/macros/s/AKfycbw2jKeoCfjuMIccMKVkDFQ9jr0TrLZi2o6w58DzeS2pMCKrEkDUeclzratwkDwobWta/exec" method="post"> <!-- Replace <your-github-pages-link> with actual link -->
+        <form action="https://script.google.com/macros/s/AKfycbw2jKeoCfjuMIccMKVkDFQ9jr0TrLZi2o6w58DzeS2pMCKrEkDUeclzratwkDwobWta/exec" method="post" onsubmit="return validateEmail()">
             <input type="text" name="first_name" placeholder="First Name" required>
             <input type="text" name="last_name" placeholder="Last Name" required>
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="tel" name="phone" placeholder="Phone (e.g., 555-555-5555)" required>
             <input type="text" name="company" placeholder="Company Name" required>
             <textarea name="message" placeholder="How can we help?" required></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>
+
+    <script>
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
+            const emailDomain = email.split('@')[1];
+            
+            if (freeEmailDomains.includes(emailDomain)) {
+                alert("Free email services (e.g., Gmail, Yahoo, Hotmail) are not allowed. Please use a company email address.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
 </body>
 </html>
