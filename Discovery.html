@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #0c2746;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-container img {
+            max-width: 120px;
+            margin-bottom: 20px;
+        }
+        .form-container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container input,
+        .form-container textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-container input {
+            height: 40px;
+        }
+        .form-container textarea {
+            resize: none;
+            height: 80px;
+        }
+        .form-container button {
+            background-color: #d92626;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #c02020;
+        }
+        /* Modify the #interests container to display items horizontally */
+        #interests {
+            display: flex; /* Make the checkboxes align horizontally */
+            flex-wrap: wrap; /* Ensure the items wrap if the screen is small */
+            justify-content: flex-start; /* Align items to the left */
+        }
+
+        #interests label {
+            display: flex; /* Display the checkbox and label inline */
+            align-items: center; /* Vertically center the checkbox with the label */
+            margin-right: 20px; /* Space between the checkboxes */
+            margin-bottom: 10px; /* Space between rows of checkboxes when wrapping */
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px; /* Space between checkbox and label */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="Verge Nursing.png" alt="Verge Nursing Logo"> <!-- Replace with your logo URL -->
+        <h2>Let's Connect</h2>
+        <form id="contactForm" action="https://script.google.com/macros/s/AKfycbw2jKeoCfjuMIccMKVkDFQ9jr0TrLZi2o6w58DzeS2pMCKrEkDUeclzratwkDwobWta/exec" method="post" onsubmit="return validateEmail(event)">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Phone (e.g., 555-555-5555)" required>
+            <input type="text" name="company" placeholder="Company Name" required>
+
+            <!-- New section starts here -->
+            <label for="interests" style="color: #fff; margin-bottom: 10px;">I'm interested in (check all that apply):</label>
+            <div id="interests" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <label style="color: #fff;">
+                    <input type="checkbox" name="interests" value="Consulting from Verge Nursing"> Consulting from Verge Nursing
+                </label>
+                <label style="color: #fff;">
+                    <input type="checkbox" name="interests" value="Virtual Nursing Staffing from Verge Nursing"> Virtual Nursing Staffing from Verge Nursing
+                </label>
+                <label style="color: #fff;">
+                    <input type="checkbox" name="interests" value="Short Term Pilot / POC Assistance from Verge Nursing"> Short Term PIlot / POC Assistance from Verge Nursing
+                </label>
+                <label style="color: #fff;">
+                    <input type="checkbox" name="interests" value="Virtual Nursing staffing from Verge Nursing"> Virtual Nursing staffing from Verge Nursing
+                </label>
+            </div>
+
+            <textarea name="message" placeholder="Comments, Questions or Details of Your Request" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateEmail(event) {
+            const email = document.getElementById('email').value;
+            const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
+            
+            // Extract domain from email
+            const emailDomain = email.split('@')[1];
+
+            // Check if email domain is in the freeEmailDomains list
+            if (freeEmailDomains.includes(emailDomain)) {
+                alert("Free email services (e.g., Gmail, Yahoo, Hotmail) are not allowed. Please use a company email address.");
+                event.preventDefault(); // Prevent form submission
+                return false; // Make sure the form does not get submitted
+            }
+
+            return true; // Allow form submission if domain is not from a free email provider
+        }
+    </script>
+</body>
+</html>
